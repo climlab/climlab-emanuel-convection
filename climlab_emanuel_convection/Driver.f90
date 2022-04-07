@@ -29,28 +29,27 @@ subroutine emanuel_convection(T, Q, QS, U, V, TRA, P, PH, &
                 IFLAG,  FT,     FQ,   FU,     FV,  FTRA, &
                 PRECIP, WD,   TPRIME, QPRIME, CBMFnew, &
                 Tout, Qout, QSout, Uout, Vout, TRAout)
-
 ! INPUT
     integer, intent(in) :: ND, NTRA ! number of layers, number of tracers
     integer, intent(in) :: NL  ! max number of levels to which convection can penetrate
     integer, intent(in) :: NCOL  ! number of independent columns
-    real, intent(in) :: T(NCOL,ND),Q(NCOL,ND),QS(NCOL,ND),U(NCOL,ND),V(NCOL,ND)
-    real, intent(in) :: TRA(NCOL,ND,NTRA),P(ND),PH(ND+1)
-    real, intent(in) :: DELT ! The model time step (sec) between calls to CONVECT
+    real(kind=8), intent(in) :: T(NCOL,ND),Q(NCOL,ND),QS(NCOL,ND),U(NCOL,ND),V(NCOL,ND)
+    real(kind=8), intent(in) :: TRA(NCOL,ND,NTRA),P(ND),PH(ND+1)
+    real(kind=8), intent(in) :: DELT ! The model time step (sec) between calls to CONVECT
     integer, intent(in) :: IPBL ! switch to bypass the dry adiabatic adjustment (bypass if IPBL=0)
-    real, intent(in) :: CBMFold(NCOL) ! The cloud base mass flux ((kg/m**2)/s)
-    real, intent(in) :: CPD, CPV, CL, RV, RD, LV0, G, ROWL  ! thermodynamic constants
+    real(kind=8), intent(in) :: CBMFold(NCOL) ! The cloud base mass flux ((kg/m**2)/s)
+    real(kind=8), intent(in) :: CPD, CPV, CL, RV, RD, LV0, G, ROWL  ! thermodynamic constants
     integer, intent(in) :: MINORIG  ! index of lowest level from which convection may originate
-    real, intent(in) :: ELCRIT, TLCRIT, ENTP, SIGD, SIGS, OMTRAIN, OMTSNOW ! model parameters
-    real, intent(in) :: COEFFR, COEFFS, CU, BETA, DTMAX, ALPHA, DAMP ! more model parameters
+    real(kind=8), intent(in) :: ELCRIT, TLCRIT, ENTP, SIGD, SIGS, OMTRAIN, OMTSNOW ! model parameters
+    real(kind=8), intent(in) :: COEFFR, COEFFS, CU, BETA, DTMAX, ALPHA, DAMP ! more model parameters
 ! OUTPUT
     integer, intent(out) :: IFLAG(NCOL)
-    real, intent(out) :: FT(NCOL,ND),FQ(NCOL,ND),FU(NCOL,ND),FV(NCOL,ND)
-    real, intent(out) :: FTRA(NCOL,ND,NTRA)
-    real, intent(out) :: PRECIP(NCOL), WD(NCOL), TPRIME(NCOL), QPRIME(NCOL)
-    real, intent(out) :: CBMFnew(NCOL)
-    real, intent(out) :: Tout(NCOL,ND),Qout(NCOL,ND),QSout(NCOL,ND)
-    real, intent(out) :: Uout(NCOL,ND),Vout(NCOL,ND),TRAout(NCOL,ND,NTRA)
+    real(kind=8), intent(out) :: FT(NCOL,ND),FQ(NCOL,ND),FU(NCOL,ND),FV(NCOL,ND)
+    real(kind=8), intent(out) :: FTRA(NCOL,ND,NTRA)
+    real(kind=8), intent(out) :: PRECIP(NCOL), WD(NCOL), TPRIME(NCOL), QPRIME(NCOL)
+    real(kind=8), intent(out) :: CBMFnew(NCOL)
+    real(kind=8), intent(out) :: Tout(NCOL,ND),Qout(NCOL,ND),QSout(NCOL,ND)
+    real(kind=8), intent(out) :: Uout(NCOL,ND),Vout(NCOL,ND),TRAout(NCOL,ND,NTRA)
 !  These are not comments! Necessary directives to f2py to handle array dimensions
 !f2py depend(ND) P,PH
 !f2py depend(NCOL,ND) T,Q,QS,U,V
@@ -68,14 +67,14 @@ subroutine emanuel_convection(T, Q, QS, U, V, TRA, P, PH, &
       Uout(j,:) = U(j,:)
       Vout(j,:) = V(j,:)
       TRAout(j,:,:) = TRA(j,:,:)
-      PRECIP(j) = 0.
+      PRECIP(j) = 0.d0
       if (IPBL.NE.0) then
         !  Local arrays Tj, Qj etc will be altered by this subroutine
         call DRYADJUSTMENT(Tout(j,:),Qout(j,:),QSout(j,:),Uout(j,:), &
              Vout(j,:),TRAout(j,:,:),P,PH, &
              ND, NL, NTRA, DELT, CPD, CPV, CL, RV, RD, LV0, G, ROWL, PRECIP(j))
       end if
-      CBMFnew(j) = 0. + CBMFold(j)  ! will be updated during call to CONVECT
+      CBMFnew(j) = 0.0d0 + CBMFold(j)  ! will be updated during call to CONVECT
       call CONVECT(Tout(j,:),Qout(j,:),QSout(j,:),Uout(j,:),Vout(j,:), &
              TRAout(j,:,:),P,PH, ND,NL,NTRA,DELT,MINORIG, &
              CPD, CPV, CL, RV, RD, LV0, G, ROWL, &

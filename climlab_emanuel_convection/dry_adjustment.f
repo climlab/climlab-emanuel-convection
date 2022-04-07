@@ -25,10 +25,10 @@ C    ***                OR EQUAL TO  ND + 1                    ***
 C
       PARAMETER (NA=70)
 C
-      REAL T(ND),Q(ND),QS(ND),U(ND),V(ND),TRA(ND,NTRA),P(ND),PH(ND)
-      REAL TRATM(NA)
-      REAL TH(NA),TOLD(NA)
-      REAL LV(NA),LV0,H(NA),HP(NA),GZ(NA),HM(NA)
+      REAL*8 T(ND),Q(ND),QS(ND),U(ND),V(ND),TRA(ND,NTRA),P(ND),PH(ND)
+      REAL*8 TRATM(NA)
+      REAL*8 TH(NA),TOLD(NA)
+      REAL*8 LV(NA),LV0,H(NA),HP(NA),GZ(NA),HM(NA)
 
 C  Compute potential temperature
         DO 7 I=1,NL+1
