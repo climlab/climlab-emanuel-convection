@@ -1,4 +1,4 @@
-# climlab-emanual-convection
+# climlab-emanuel-convection
 
 ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/climlab/climlab-emanuel-convection/build-and-test/main?logo=github&style=for-the-badge)
 
