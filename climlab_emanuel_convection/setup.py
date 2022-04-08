@@ -15,7 +15,7 @@ def configuration(parent_package='', top_path=None):
         if compiler == 'gnu95':
             f90flags.append('-fno-range-check')
             f90flags.append('-ffree-form')
-            f90flags.append('-fdefault-real-8')
+            f90flags.append('-fdefault-real-8')  # necessary to ensure 64-bit reals are used throughout
         elif compiler == 'intel' or compiler == 'intelem':
             f90flags.append('-132')
         #  Set aggressive optimization level

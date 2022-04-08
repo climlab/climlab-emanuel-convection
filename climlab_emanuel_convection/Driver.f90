@@ -19,6 +19,10 @@
 !  Brian Rose
 !  brose@albany.edu
 !  January 2018
+!
+!  Modified again in April 2022 during creation of the stand-along package
+!  climlab_emanuel_convection
+!  To ensure that the convection module uses 64-bit reals
 
 
 subroutine emanuel_convection(T, Q, QS, U, V, TRA, P, PH, &
