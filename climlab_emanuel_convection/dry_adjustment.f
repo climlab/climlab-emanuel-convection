@@ -6,6 +6,10 @@
 *
 *   Brian E. J. Rose
 *   January 2018
+*
+*  Modified again in April 2022 during creation of the stand-along package
+*  climlab_emanuel_convection
+*  To ensure that the convection module uses 64-bit reals
 
 
 ***************************************************************************
@@ -25,6 +29,7 @@ C    ***                OR EQUAL TO  ND + 1                    ***
 C
       PARAMETER (NA=70)
 C
+C Brian:  Use REAL*8 instead of REAL for all floats
       REAL*8 T(ND),Q(ND),QS(ND),U(ND),V(ND),TRA(ND,NTRA),P(ND),PH(ND)
       REAL*8 TRATM(NA)
       REAL*8 TH(NA),TOLD(NA)
