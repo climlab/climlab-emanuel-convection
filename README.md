@@ -20,22 +20,13 @@ For now, please build from source (instructions below).
 
 ## Example usage
 
-You can import the modules into a Python session with
+You can import the Fortran driver into a Python session with
 ```
-from climlab_rrtmg import rrtmg_lw, rrtmg_sw
-```
-
-The main RRTMG drivers are exposed through
-```
-rrtmg_lw.climlab_rrtmg_lw()
-```
-and
-```
-rrtmg_sw.climlab_rrtmg_sw()
+from climlab_emanuel_convection import emanuel_convection
 ```
 
-Please see the directory `climlab_rrtmg/tests/` directory in this repository
-for working examples that set up all the necessary input arrays and call the drivers.
+Please see the directory `climlab_emanuel_convection/tests/` directory in this repository
+for working examples that set up all the necessary input arrays and call the driver.
 
 ## Building from source
 
