@@ -1,6 +1,6 @@
 # climlab-emanual-convection
 
-![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/brian-rose/climlab-emanuel_convection/build-and-test/main?logo=github&style=for-the-badge)
+![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/brian-rose/climlab-emanuel-convection/build-and-test/main?logo=github&style=for-the-badge)
 
 Brian Rose, University at Albany
 
