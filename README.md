@@ -1,6 +1,6 @@
 # climlab-emanuel-convection
 
-![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/climlab/climlab-emanuel-convection/build-and-test/main?logo=github&style=for-the-badge)
+![build-and-test workflow](https://github.com/climlab/climlab-emanuel-convection/actions/workflows/build-and-test.yml/badge.svg)
 
 Brian Rose, University at Albany
 
@@ -16,9 +16,19 @@ The original `convect43c` code is bundled here, courtesy of Kerry Emanuel.
 
 ## Installation
 
-Pre-built binaries for many platforms will be available to install from conda-forge. Stay tuned.
+Pre-built binaries for many platforms are available from [conda-forge](https://conda-forge.org).
 
-For now, please build from source (instructions below).
+To install in the current environment:
+```
+conda install climlab-emanuel-convection --channel conda-forge
+```
+or create a self-contained environment:
+```
+conda create --name my_env python=3.10 climlab-emanuel-convection --channel conda-forge
+conda activate my_env
+```
+
+See below for instructions on how to build from source.
 
 ## Example usage
 
