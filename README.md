@@ -54,7 +54,7 @@ conda activate convect_build_env
 python -m pip install . --no-deps -vv
 ```
 
-To run tests, do this from any directory other than the climlab_rrtmg repo:
+To run tests, do this from any directory other than the climlab-emanuel-convection repo:
 ```
 pytest -v --pyargs climlab_emanuel_convection
 ```
