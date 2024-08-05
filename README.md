@@ -24,7 +24,7 @@ conda install climlab-emanuel-convection --channel conda-forge
 ```
 or create a self-contained environment:
 ```
-conda create --name my_env python=3.10 climlab-emanuel-convection --channel conda-forge
+conda create --name my_env python=3.11 climlab-emanuel-convection --channel conda-forge
 conda activate my_env
 ```
 
@@ -42,17 +42,31 @@ for working examples that set up all the necessary input arrays and call the dri
 
 ## Building from source
 
-Here are instructions to create a build environment (including Fortran compiler)
-with conda/mamba and build using f2py.
-It should be possible to build using other Fortran compilers, but I haven't tested this.
+### Build environment
 
-To build *(example for Apple M1 machine, see `./ci/` for other environment files)*:
+Here are instructions to create a build environment (including Fortran compiler) with conda/mamba
+
+Starting from the root of the `climlab-sbm-convection` repo *(example for Apple M1 machine, see `./ci/` for other environment files)*:
 ```
-mamba create --name convect_build_env python=3.10 --channel conda-forge
+mamba env create --file ./ci/requirements-macos-arm64.yml
+conda activate convect_build_env
+```
+
+Or, to specify the Python version, you can do
+```
+mamba create --name convect_build_env python=3.11 --channel conda-forge
 mamba env update --file ./ci/requirements-macos-arm64.yml
 conda activate convect_build_env
+```
+
+### Building and installing into the Python environment
+
+From the root of the repository, do this:
+```
 python -m pip install . --no-deps -vv
 ```
+
+### Running tests
 
 To run tests, do this from any directory other than the climlab-emanuel-convection repo:
 ```
@@ -61,6 +75,7 @@ pytest -v --pyargs climlab_emanuel_convection
 
 ## Version history
 
-Version 0.2 is the first public release (April 2022).
+- Version 0.3 (released August 2024) modernizes the build infrastructure (now using meson) and successfully builds on Python 3.12. No changes to the Python wrapper.
+- Version 0.2 is the first public release (April 2022).
 The Python wrapper code has been extracted from
 [climlab v0.7.13](https://github.com/brian-rose/climlab/releases/tag/v0.7.13).
