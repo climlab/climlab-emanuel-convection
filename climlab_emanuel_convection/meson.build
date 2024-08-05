@@ -30,7 +30,7 @@ mysource = custom_target('_emanuel_convection.c',
 inc_np = include_directories(incdir_numpy, incdir_f2py)
 
 py.extension_module('_emanuel_convection',
-  ['Driver.f90', mysource],
+  ['Driver.f90', 'convect.f', 'dry_adjustment.f', mysource],
   incdir_f2py / 'fortranobject.c',
   include_directories: inc_np,
   dependencies : py_dep,
