@@ -44,6 +44,7 @@ jobs:
         if: ${{ matrix.os == 'Windows' }}
         run: |
           "CC=gcc" | Out-File -Append -Encoding ASCII $env:GITHUB_ENV
+          "C:\mingw64\bin" | Out-File -Append -Encoding ASCII $env:GITHUB_PATH
       - name: Build and install climlab_rrtmg
         run: |
           python -m pip install --no-build-isolation --no-deps .
